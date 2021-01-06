@@ -13,12 +13,18 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
+        {% if not user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="#">SignUp</a>
+          <a class="nav-link" href="{% url 'blog:signup' %}">SignUp</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">LogIn</a>
+          <a class="nav-link" href="{% url 'blog:login' %}">LogIn</a>
         </li>
+        {% else %}
+          <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog:logout' %}">Logout</a>
+        </li>
+        {% endif %}
       </ul>
 
       <div class="mr-auto"></div>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main>
+        <section class="container">
+            <form action="{% url 'blog:signup' %}" method="POST" novalidate>
+                {% csrf_token %}
+                {{form.non_field_errors}}
+                {% for fields in form %}
+              <div class="mb-3">
+                <label for="{{fields.auto_id}}" class="form-label">{{fields.label}}</label>
+                {{fields}}
+                  {% for i in fields.errors %}
+                  <small>{{i}}</small>
+                  {% endfor %}
+              </div>
+                {% endfor %}
+              <button type="submit" class="btn btn-primary">SignUp</button>
+            </form>
+            {% if mesaages %}
+                {% for msg in messages %}
+                    {{msg}}
+                {% endfor %}
+            {% endif %}
+        </section>
+    </main>
+{% endblock %}

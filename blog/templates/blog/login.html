@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main>
+        <section class="container">
+            <form action="{% url 'blog:login' %}" method="POST" novalidate>
+                {% csrf_token %}
+
+                {% for i in loginform %}
+                    {{i.non_field_errors}}
+                    <label for="{{i.auto_id}}" class="form-label">{{i.label}}</label>
+                    {{i}}
+
+                {% endfor %}
+                <input type="submit" class="btn btn-primary mt-4">
+            </form>
+            {% if messages %}
+                    {% for msg in messages %}
+                        <small class="alert-{{msg.tags}}">{{msg}}</small><br>
+                    {% endfor %}
+                   {% endif %}
+        </section>
+    </main>
+{% endblock %}
