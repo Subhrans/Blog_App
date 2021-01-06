@@ -1,8 +1,43 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
-Index view
+BLog
 {% endblock %}
-
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+{% endblock %}
 {% block content %}
-<h1>Hello subhransu</h1>
+    <header>
+        {% include 'blog/navbar.html' %}
+    </header>
+    <main>
+        <section class="mt-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 bg-light posts">
+                        <div class="card" style="width: 40rem;">
+                          <img src="..." class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 bg-light recent">
+                        <div class="row">
+                            <div class="col">
+                                <p>follow us</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Recent posts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 {% endblock %}
