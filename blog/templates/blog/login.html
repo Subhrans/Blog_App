@@ -1,8 +1,25 @@
 {% extends 'base.html' %}
+{% block css %}
+    <style>
+        main .container .loginform{
+            position:absolute;
+            left:40%;
+        }
+    </style>
+{% endblock %}
 {% block content %}
+    <header>
+        {% include 'blog/navbar.html' %}
+    </header>
     <main>
         <section class="container">
-            <form action="{% url 'blog:login' %}" method="POST" novalidate>
+            {% if messages %}
+                {% for msg in messages %}
+                    <p class=" alert alert-{{msg.tags}} my-2">{{msg}}</p><br>
+                {% endfor %}
+            {% endif %}
+            <p class="h1 text-uppercase text-primary d-flex justify-content-center">Login</p>
+            <form action="{% url 'blog:login' %}" class="w-25 loginform" method="POST" novalidate>
                 {% csrf_token %}
 
                 {% for i in loginform %}
@@ -11,13 +28,9 @@
                     {{i}}
 
                 {% endfor %}
-                <input type="submit" class="btn btn-primary mt-4">
+                <input type="submit" class="btn btn-primary mt-4" value="LOGIN">
             </form>
-            {% if messages %}
-                    {% for msg in messages %}
-                        <small class="alert-{{msg.tags}}">{{msg}}</small><br>
-                    {% endfor %}
-                   {% endif %}
+
         </section>
     </main>
 {% endblock %}

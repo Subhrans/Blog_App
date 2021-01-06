@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% include 'blog/navbar.html' %}
     <main>
         <section class="container">
             <form action="{% url 'blog:signup' %}" method="POST" novalidate>
@@ -11,7 +12,7 @@
                 <label for="{{fields.auto_id}}" class="form-label">{{fields.label}}</label>
                 {{fields}}
                   {% for i in fields.errors %}
-                  <small>{{i}}</small>
+                  <small class="errorlist text-danger">{{i|striptags}}</small>
                   {% endfor %}
               </div>
                 {% endfor %}

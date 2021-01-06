@@ -1,0 +1,47 @@
+<section class="mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 posts">
+                {% if posts %}
+                    {% for post in posts %}
+                    <div class="card mb-5" style="width: 40rem;">
+                        <a href="#" class="nav-link alert text-dark mb-0">
+
+                            <img src="/media/{{post.user.userprofile.profile_Image}}" id="profilepic" alt="dp" class="">
+                            {% if post.user.first_name %}
+                                {{post.user.first_name}} {{post.user.last_name}}
+                            {% else %}
+                                {{post.user}}
+                            {% endif %}
+                        </a>
+                        <small class="text-info">{{post.creation_date}}</small>
+                        {% if post.image %}
+                            <img src="/media/{{post.image}}" class="card-img-top h-25" alt="...">
+                        {% endif %}
+                      <div class="card-body">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <p class="card-text">{{post.description|linebreaksbr}}</p>
+
+                      </div>
+                    </div>
+
+                    {% endfor %}
+                {% else %}
+                    <p class="h3">Sorry no posts available</p>
+                {% endif %}
+            </div>
+            <div class="col-md-2 bg-light recent">
+                <div class="row">
+                    <div class="col">
+                        <p>follow us</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>Recent posts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

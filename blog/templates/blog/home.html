@@ -5,44 +5,22 @@ BLog
 {% endblock %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <style>
+        #profilepic{
+        max-width:35px;
+        border-radius:50px;
+        max-height:30px;
+        }
+    </style>
 {% endblock %}
 {% block content %}
     <header>
         {% include 'blog/navbar.html' %}
     </header>
     <main>
-        <section class="mt-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 bg-light posts">
-                        <div class="card" style="width: 40rem;">
-                          <img src="..." class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">User Posts</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        {% include 'blog/content.html' %}
+        <section class="footer">
 
-                          </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2 bg-light recent">
-                        <div class="row">
-                            <div class="col">
-                                <p>follow us</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <p>Recent posts</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section>
-            {% for i in form %}
-                {{i.label_tag}}{{i}}<br>
-            {% endfor %}
         </section>
     </main>
 {% endblock %}
