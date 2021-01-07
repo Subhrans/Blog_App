@@ -12,6 +12,14 @@ class SignUp(UserCreationForm):
         model = User
         fields = ['username','password1','password2']
 
+    def save(self, commit=True):
+        user = super(SignUp, self).save(commit=False)
+        first_name = user.username.split('@')
+        user.first_name = first_name[0]
+        user.email = user.username
+        user.save()
+        return user
+
 class Login(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))

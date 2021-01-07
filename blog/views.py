@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User,Group
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,logout,authenticate
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from .forms import SignUp,Login,ProfileForm,PostForm
 from .models import Post
 # Create your views here.
 
-
+@login_required(login_url='/login/')
 def index(request):
     posts = Post.objects.all()
     return render(request, 'blog/home.html', context={'posts':posts})
@@ -20,6 +20,7 @@ def signup(request):
             usersave = form.save()
             groups = Group.objects.get(name='Users')
             usersave.groups.add(groups)
+
 
             return HttpResponseRedirect('/login/')
 
@@ -55,13 +56,23 @@ def LogoutView(request):
     return HttpResponseRedirect('/')
 
 def Addpost(reqeust):
-    if reqeust.method == "POST":
-        pf = PostForm(reqeust.POST)
-        if pf.is_valid():
-            x=pf.cleaned_data['title']
-            print(x)
+
+    if reqeust.user.is_authenticated:
+        if reqeust.method == "POST":
+            pf = PostForm(reqeust.POST,reqeust.FILES)
+            if pf.is_valid():
+                title = pf.cleaned_data['title']
+                description = pf.cleaned_data['title']
+                user = reqeust.user
+                image = pf.cleaned_data['image']
+                postdata = Post(title=title, description=description, user=user, image=image)
+                postdata.save()
+                return HttpResponseRedirect('/')
+
+        else:
+            pf = PostForm()
     else:
-        pf = PostForm()
+        return HttpResponseRedirect('/login/')
     return render(reqeust,'blog/add_post.html',{'postform':pf})
 
 def dashboard(request):

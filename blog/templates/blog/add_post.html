@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form action="{% url 'blog:add_post' %}" method="POST" novalidate>
+    <form action="{% url 'blog:add_post' %}" method="POST" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {% for i in postform %}
             <label for="{{i.auto_id}}" class="control-label">{{i.label}}</label>
