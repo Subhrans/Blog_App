@@ -55,7 +55,13 @@ def LogoutView(request):
     return HttpResponseRedirect('/')
 
 def Addpost(reqeust):
-    pf = PostForm()
+    if reqeust.method == "POST":
+        pf = PostForm(reqeust.POST)
+        if pf.is_valid():
+            x=pf.cleaned_data['title']
+            print(x)
+    else:
+        pf = PostForm()
     return render(reqeust,'blog/add_post.html',{'postform':pf})
 
 def dashboard(request):
