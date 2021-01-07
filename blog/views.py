@@ -76,5 +76,7 @@ def Addpost(reqeust):
     return render(reqeust,'blog/add_post.html',{'postform':pf})
 
 def dashboard(request):
-    dash = ProfileForm
-    return render(request,'blog/profile.html',{'dashboard':dash})
+    dash = ProfileForm()
+    post_data = Post.objects.filter(user=request.user)
+    context = {"posts":post_data,'dashboard':dash}
+    return render(request,'blog/profile.html',context)

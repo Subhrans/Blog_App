@@ -13,11 +13,33 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+class SecondarySchool(models.Model):
+    name = models.CharField(max_length=200)
+    join_date = models.DateField()
+    end_date = models.DateField()
+    completed = models.BooleanField(default=False)
+
+class HigherSecondarySchool(models.Model):
+    name = models.CharField(max_length=200)
+    join_date = models.DateField()
+    end_date = models.DateField()
+    completed = models.BooleanField(default=False)
+
+class College(models.Model):
+    name = models.CharField(max_length=200)
+    course = models.CharField(max_length=200)
+    join_date = models.DateField()
+    end_date = models.DateField()
+    completed = models.BooleanField(default=False)
 
 class UserProfile(models.Model):
     profile_Image = models.ImageField(upload_to='images/')
     bio = models.TextField(null=True)
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    cover_Image = models.ImageField(upload_to='images/cover_img/', null=True, blank=True)
+    secondary_school = models.ForeignKey(SecondarySchool, null=True, blank=True, on_delete=models.DO_NOTHING)
+    higher_secondary_school = models.ForeignKey(HigherSecondarySchool, null=True, blank=True, on_delete=models.DO_NOTHING)
+
 
     def __str__(self):
         return "{}".format(self.user)
