@@ -5,7 +5,7 @@
                 {% if posts %}
                     {% for post in posts reversed %}
                     <div class="card mb-5" style="width: 40rem;">
-                        <a href="{% url 'blog:profile' post.user.id %}" class="nav-link alert text-dark mb-0">
+                        <a href="{% url 'blog:profile' post.user %}" class="nav-link alert text-dark mb-0">
                             {% if post.user.userprofile.profile_Image %}
                             <img src="/media/{{post.user.userprofile.profile_Image}}" id="profilepic" alt="dp" class="mr-3">
                             {% endif %}
@@ -33,13 +33,13 @@
                     <p class="h3">Sorry no posts available</p>
                 {% endif %}
             </div>
-            <div class="col-md-2 bg-light recent">
-                <div class="row">
+            <div class="col-md-2  recent">
+                <div class="row bg-light">
                     <div class="col">
                         <p>follow us</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row bg-light">
                     <div class="col">
                         <p>Recent posts</p>
                     </div>

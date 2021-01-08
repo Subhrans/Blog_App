@@ -14,7 +14,7 @@
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="/media/{{request.user.userprofile.cover_Image}}" class="d-block w-50 cover_pic" alt="cover pic">
+                            <img src="/media/{{userprofile.cover_Image}}" class="d-block w-50 cover_pic" alt="cover pic">
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                 <!-- Profile pic placement section-->
 
                 <div class="row">
-                    <img src="/media/{{request.user.userprofile.profile_Image}}" alt="profile_pic" width="200px" height="200px" class=" profile_pic rounded-circle">
+                    <img src="/media/{{userprofile.profile_Image}}" alt="profile_pic" width="200px" height="200px" class="profile_pic">
                 </div>
                 <div class="row">
                     <ul class="nav nav-tabs">
@@ -48,7 +48,7 @@
                         <div class="row">
                             <p class="h4">Intro</p>
                             <div class="col">
-                                <p class="education">{{request.user.userprofile.bio}}</p>
+                                <p class="education">{{userprofile.bio}}</p>
                                 <p class="location">location</p>
                                 <a class="btn btn-secondary text-white"> Edit Details</a>
                                 <a class="btn btn-secondary text-white"> Add hobies</a>

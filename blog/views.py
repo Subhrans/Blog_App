@@ -85,9 +85,8 @@ def Addpost(reqeust):
 def dashboard(request,pk):
     dash = ProfileForm()
     chpic = ChangeProfilePicForm()
-    # userprofile = UserProfile.objects.get(user=username)
-    userprofile = User.objects.get(id=pk)
-    post_data = Post.objects.filter(user=request.user)
+    userprofile = UserProfile.objects.get(user__username=pk)
+    post_data = Post.objects.filter(user__username=pk)
     context = {"posts":post_data,'dashboard':dash, 'userprofile':userprofile, 'chpic':chpic}
     return render(request,'blog/profile.html',context)
 
