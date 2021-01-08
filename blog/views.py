@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import User,Group
 from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 from django.http import HttpResponseRedirect
@@ -14,10 +14,10 @@ def index(request):
     return render(request, 'blog/home.html', context={'posts':posts})
 
 
-def detailPost(request):
-    user = request.user
-    Post.objects.get(user=user)
-    return render(request,'blog/postdetail.html')
+def detailPost(request,pk):
+    post = Post.objects.get(id=pk)
+    return render(request,'blog/postdetail.html',{'post':post})
+
 
 def signup(request):
     if request.method == "POST":
@@ -61,6 +61,7 @@ def LogoutView(request):
     logout(request)
     return HttpResponseRedirect('/')
 
+
 def Addpost(reqeust):
 
     if reqeust.user.is_authenticated:
@@ -68,7 +69,7 @@ def Addpost(reqeust):
             pf = PostForm(reqeust.POST,reqeust.FILES)
             if pf.is_valid():
                 title = pf.cleaned_data['title']
-                description = pf.cleaned_data['title']
+                description = pf.cleaned_data['description']
                 user = reqeust.user
                 image = pf.cleaned_data['image']
                 postdata = Post(title=title, description=description, user=user, image=image)
@@ -81,19 +82,21 @@ def Addpost(reqeust):
         return HttpResponseRedirect('/login/')
     return render(reqeust,'blog/add_post.html',{'postform':pf})
 
-def dashboard(request):
+def dashboard(request,pk):
     dash = ProfileForm()
     chpic = ChangeProfilePicForm()
-    userprofile = UserProfile.objects.get(user=request.user)
+    # userprofile = UserProfile.objects.get(user=username)
+    userprofile = User.objects.get(id=pk)
     post_data = Post.objects.filter(user=request.user)
     context = {"posts":post_data,'dashboard':dash, 'userprofile':userprofile, 'chpic':chpic}
     return render(request,'blog/profile.html',context)
 
+
 def changeProfilePic(request):
     if request.method == 'POST':
-        chpic = ChangeProfilePicForm(request.POST,request.FILES)
+        chpic = ChangeProfilePicForm(request.POST, request.FILES)
         if chpic.is_valid():
             chpic.save()
     else:
         chpic = ChangeProfilePicForm()
-    return render(request,'blog/profile.html',{'chpic':chpic})
+    return render(request,'blog/profile.html', {'chpic':chpic})

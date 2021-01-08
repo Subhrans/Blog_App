@@ -5,7 +5,7 @@
                 {% if posts %}
                     {% for post in posts reversed %}
                     <div class="card mb-5" style="width: 40rem;">
-                        <a href="#" class="nav-link alert text-dark mb-0">
+                        <a href="{% url 'blog:profile' post.user.id %}" class="nav-link alert text-dark mb-0">
                             {% if post.user.userprofile.profile_Image %}
                             <img src="/media/{{post.user.userprofile.profile_Image}}" id="profilepic" alt="dp" class="mr-3">
                             {% endif %}
@@ -17,7 +17,7 @@
                         </a>
                         <small class="text-info ml-3">{{post.creation_date}}</small>
                         {% if post.image %}
-                        <a href="">
+                        <a href="{% url 'blog:postdetail' post.id %}">
                             <img src="/media/{{post.image}}" class="card-img-top h-25" alt="...">
                         </a>
                         {% endif %}
