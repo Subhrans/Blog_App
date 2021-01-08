@@ -10,16 +10,22 @@
       </div>
       <div class="modal-body">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 d-flex justify-content-start">
                 <p> Profile Picture</p>
             </div>
-            <div class="col-md-6">
-                <a class="nav-link"> Edit</a>
+            <div class="col-md-6 d-flex justify-content-end ">
+                <ul class="nav">
+                    <li class="nav-item">
+                        {% for i in chpic %}
+                        {{i}}
+                        {% endfor %}
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <img src="" alt="pro img">
+            <div class="col d-flex justify-content-center">
+                <img src="/media/{{userprofile.profile_Image}}" width="200px" height="200px" class="rounded-circle" alt="pro img">
             </div>
         </div>
 
@@ -28,21 +34,22 @@
             <div class="col-md-6">
                 <p> Cover Picture</p>
             </div>
-            <div class="col-md-6">
-                <a class="nav-link"> Edit</a>
+              <div class="col-md-6 d-flex justify-content-end ">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Edit</a>
+                    </li>
+                </ul>
             </div>
+
         </div>
         <div class="row">
-            <div class="col">
-                <img src="" alt="cover img">
+            <div class="col d-flex justify-content-center">
+                <img src="/media/{{userprofile.cover_Image}}" class="w-50" alt="cover img">
             </div>
         </div>
 
           <!--End of cover image-->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

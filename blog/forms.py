@@ -40,3 +40,8 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['profile_Image','cover_Image','bio']
+
+class ChangeProfilePicForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['profile_Image']

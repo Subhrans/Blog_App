@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User,Group
+from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .forms import SignUp,Login,ProfileForm,PostForm
-from .models import Post
+from .forms import SignUp,Login,ProfileForm,PostForm,ChangeProfilePicForm
+from .models import Post,UserProfile
 # Create your views here.
 
 @login_required(login_url='/login/')
@@ -20,7 +20,7 @@ def signup(request):
             usersave = form.save()
             groups = Group.objects.get(name='Users')
             usersave.groups.add(groups)
-
+            UserProfile.objects.create(user=usersave)
 
             return HttpResponseRedirect('/login/')
 
@@ -77,6 +77,17 @@ def Addpost(reqeust):
 
 def dashboard(request):
     dash = ProfileForm()
+    chpic = ChangeProfilePicForm()
+    userprofile = UserProfile.objects.get(user=request.user)
     post_data = Post.objects.filter(user=request.user)
-    context = {"posts":post_data,'dashboard':dash}
+    context = {"posts":post_data,'dashboard':dash, 'userprofile':userprofile, 'chpic':chpic}
     return render(request,'blog/profile.html',context)
+
+def changeProfilePic(request):
+    if request.method == 'POST':
+        chpic = ChangeProfilePicForm(request.POST,request.FILES)
+        if chpic.is_valid():
+            chpic.save()
+    else:
+        chpic = ChangeProfilePicForm()
+    return render(request,'blog/profile.html',{'chpic':chpic})
