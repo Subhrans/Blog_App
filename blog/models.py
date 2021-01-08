@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
 
@@ -12,7 +11,9 @@ class Post(models.Model):
     image = models.ImageField(upload_to='images/post/', blank=True, null=True)
 
     def __str__(self):
-        return self.title
+        return '{} of {}'.format(self.title, self.id)
+
+
 class SecondarySchool(models.Model):
     name = models.CharField(max_length=200)
     join_date = models.DateField()

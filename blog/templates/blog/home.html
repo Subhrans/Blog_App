@@ -3,15 +3,11 @@
 {% block title %}
 BLog
 {% endblock %}
+
+{% load static %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
-    <style>
-        #profilepic{
-        max-width:35px;
-        border-radius:50px;
-        max-height:30px;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 {% block content %}
     <header>

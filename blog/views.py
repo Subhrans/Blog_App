@@ -13,6 +13,12 @@ def index(request):
     posts = Post.objects.all()
     return render(request, 'blog/home.html', context={'posts':posts})
 
+
+def detailPost(request):
+    user = request.user
+    Post.objects.get(user=user)
+    return render(request,'blog/postdetail.html')
+
 def signup(request):
     if request.method == "POST":
         form = SignUp(request.POST)

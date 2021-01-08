@@ -1,0 +1,33 @@
+#carouselExampleSlidesOnly .carousel-inner .active{
+    box-shadow:inset 0 137px 185px 0px #343434, inset 0px -68px 111px 0px #0000;
+    padding:0 !important;
+}
+
+
+#carouselExampleSlidesOnly .carousel-inner .active .cover_pic{
+    transform:translateX(50%);
+    opacity:0.8;
+}
+
+.user_profile .row .profile_pic
+{
+    position:absolute;
+    left:40%;
+    top:50%;
+
+}
+
+.user_profile .row .nav-tabs
+{
+    transform:translateX(150%) translateY(30px);
+}
+
+.user_profile .row .under_nav_section
+{
+    transform:translateY(100px) translateX(100px);
+}
+
+.user_profile .row .left
+{
+    transform:translateY(100px) translateX(70px);
+}
