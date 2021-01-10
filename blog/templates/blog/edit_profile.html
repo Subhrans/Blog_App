@@ -15,11 +15,12 @@
             </div>
             <div class="col-md-6 d-flex justify-content-end ">
                 <ul class="nav">
-                    <li class="nav-item">
-                        {% for i in chpic %}
-                        {{i}}
-                        {% endfor %}
-                    </li>
+                    <form action="{% url 'blog:changepropic' %}" class="dropzone" id="my-dropzone">
+                        {% csrf_token %}
+                      <div class="fallback">
+                        <input name="file" type="file" multiple />
+                      </div>
+                    </form>
                 </ul>
             </div>
         </div>

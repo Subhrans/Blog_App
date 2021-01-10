@@ -93,9 +93,16 @@ def dashboard(request,pk):
 
 def changeProfilePic(request):
     if request.method == 'POST':
-        chpic = ChangeProfilePicForm(request.POST, request.FILES)
-        if chpic.is_valid():
-            chpic.save()
-    else:
-        chpic = ChangeProfilePicForm()
-    return render(request,'blog/profile.html', {'chpic':chpic})
+        print(request.FILES)
+
+        #  client file saved / update without using any form
+
+        # here i used DropZone js
+
+        profilepic = request.FILES['file']
+        save_pic = UserProfile.objects.get(user=request.user)
+        save_pic.profile_Image = profilepic
+        save_pic.save()
+        # return HttpResponseRedirect('/profile/'+str(save_pic.user)+"/")
+
+    return render(request,'blog/profile.html')

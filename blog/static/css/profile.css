@@ -14,10 +14,14 @@
 {
     position:absolute;
     left:40%;
-    top:50%;
+    top:39%;
     border-radius:50% !important;
     border: 5px solid #fff;
 
+}
+.user_profile .row .profile_username{
+    margin-left:45%;
+    margin-top:5%;
 }
 
 .user_profile .row .nav-tabs
@@ -34,4 +38,7 @@
 .user_profile .row .left
 {
     transform:translateY(100px) translateX(70px);
+}
+.dz{
+    border:none !important;
 }

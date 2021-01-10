@@ -3,6 +3,10 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/profile.js' %}"></script>
+{% endblock  %}
 {% block content %}
     <header>
         {% include 'blog/navbar.html' %}
@@ -10,11 +14,13 @@
     <main>
         <section class="user_profile">
 
-            <div class="container-fluid">
+            <div class="">
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
+                            {% if userprofile.cover_Image %}
                             <img src="/media/{{userprofile.cover_Image}}" class="d-block w-50 cover_pic" alt="cover pic">
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -24,6 +30,13 @@
 
                 <div class="row">
                     <img src="/media/{{userprofile.profile_Image}}" alt="profile_pic" width="200px" height="200px" class="profile_pic">
+                    <p class="h3 profile_username ">
+                        {% if userprofile.user.first_name and userprofile.user.last_name %}
+                            {{userprofile.user.first_name}}  {{userprofile.user.last_name}}
+                        {% else %}
+                            {{userprofile.user.first_name}}
+                        {% endif %}
+                    </p>
                 </div>
                 <div class="row">
                     <ul class="nav nav-tabs">
