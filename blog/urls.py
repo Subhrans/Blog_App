@@ -11,6 +11,7 @@ urlpatterns = [
     path('add_post/',views.Addpost,name="add_post"),
     path('postdetail/<int:pk>/',views.detailPost,name='postdetail'),
     path('changeprofilepic/',views.changeProfilePic,name="changepropic"),
+    path('changecoverpic/',views.changeCoverPic,name="changecoverpic"),
 
     # path('add_post/<str:pk>/',views.Addpost,name="add_post"),
 ]

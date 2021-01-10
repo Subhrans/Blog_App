@@ -1,8 +1,8 @@
 Dropzone.autoDiscover = false;
 
-const myDropzone = new Dropzone('#my-dropzone',{
+const myDropzone_profile = new Dropzone('#my-dropzone-profile',{
     maxFiles:1,
-    maxFileSize:2,
+    dictDefaultMessage : 'Edit',
     addRemoveLinks: true,   // Add file remove button.
     acceptedFiles: '.jpg, .png',
     init: function () {
@@ -13,4 +13,19 @@ const myDropzone = new Dropzone('#my-dropzone',{
 
     }
 
+})
+
+// Cover pic of dropzone
+
+const myDropzone_cover = new Dropzone('#my-dropzone-cover',{
+    maxFiles:1,
+    dictDefaultMessage:"Edit",
+    addRemoveLinks: true,
+    createImageThumbnails: false,
+    acceptedFiles:'.png, .jpg',
+    init: function(){
+    this.on('complete',function(){
+        location.reload();
+    });
+   }
 })

@@ -85,6 +85,7 @@ def Addpost(reqeust):
 def dashboard(request,pk):
     dash = ProfileForm()
     chpic = ChangeProfilePicForm()
+    print(pk)
     userprofile = UserProfile.objects.get(user__username=pk)
     post_data = Post.objects.filter(user__username=pk)
     context = {"posts":post_data,'dashboard':dash, 'userprofile':userprofile, 'chpic':chpic}
@@ -104,5 +105,16 @@ def changeProfilePic(request):
         save_pic.profile_Image = profilepic
         save_pic.save()
         # return HttpResponseRedirect('/profile/'+str(save_pic.user)+"/")
+
+    return render(request,'blog/profile.html')
+
+
+def changeCoverPic(request):
+    if request.method == "POST":
+        cover_pic = request.FILES['file']
+        save_pic = UserProfile.objects.get(user=request.user)
+        save_pic.cover_Image = cover_pic
+        save_pic.save()
+
 
     return render(request,'blog/profile.html')

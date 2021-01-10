@@ -10,15 +10,16 @@
       </div>
       <div class="modal-body">
         <div class="row">
-            <div class="col-md-6 d-flex justify-content-start">
+            <div class="col-md-4">
                 <p> Profile Picture</p>
             </div>
-            <div class="col-md-6 d-flex justify-content-end ">
+            <div class="mr-auto"></div>
+            <div class="col-md-3">
                 <ul class="nav">
-                    <form action="{% url 'blog:changepropic' %}" class="dropzone" id="my-dropzone">
+                    <form action="{% url 'blog:changepropic' %}" class="dropzone" id="my-dropzone-profile">
                         {% csrf_token %}
                       <div class="fallback">
-                        <input name="file" type="file" multiple />
+                        <input name="file" type="file" multiple class="edit_button"/>
                       </div>
                     </form>
                 </ul>
@@ -26,27 +27,39 @@
         </div>
         <div class="row">
             <div class="col d-flex justify-content-center">
+                {% if userprofile.profile_Image %}
                 <img src="/media/{{userprofile.profile_Image}}" width="200px" height="200px" class="rounded-circle" alt="pro img">
+                {% else %}
+                <img src="/static/images/default_profile/default-profile.jpg'" width="200px" height="200px" class="rounded-circle" alt="pro img">
+                {% endif %}
             </div>
         </div>
 
           <!-- Cover Photo  -->
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <p> Cover Picture</p>
             </div>
-              <div class="col-md-6 d-flex justify-content-end ">
+              <div class="mr-auto"></div>
+              <div class="col-md-3">
                 <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Edit</a>
-                    </li>
+                    <form action="{% url 'blog:changecoverpic' %}" class="dropzone" id="my-dropzone-cover">
+                        {% csrf_token %}
+                      <div class="fallback">
+                        <input name="file" type="file" multiple class="edit_button"/>
+                      </div>
+                    </form>
                 </ul>
             </div>
 
         </div>
         <div class="row">
             <div class="col d-flex justify-content-center">
+                {% if userprofile.cover_Image %}
                 <img src="/media/{{userprofile.cover_Image}}" class="w-50" alt="cover img">
+                {% else %}
+                    <p class="h5 border m-2 p-2">No cover image</p>
+                {% endif %}
             </div>
         </div>
 

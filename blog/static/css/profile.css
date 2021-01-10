@@ -39,6 +39,20 @@
 {
     transform:translateY(100px) translateX(70px);
 }
-.dz{
+.dropzone{
+    display: block;
+    padding: 0 2rem;
+    color: #007bff;
+    background-color: transparent;
     border:none !important;
+    min-height:0;
+}
+.modal_body .row .col-md-6{
+    margin-top:-20px;
+}
+.dropzone .dz-message{
+    margin:0;
+}
+.dropzone .dz-preview{
+display:none;
 }

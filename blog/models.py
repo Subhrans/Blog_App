@@ -34,7 +34,7 @@ class College(models.Model):
     completed = models.BooleanField(default=False)
 
 class UserProfile(models.Model):
-    profile_Image = models.ImageField(upload_to='images/', null=True)
+    profile_Image = models.ImageField(default="images/default_profile/default-profile.jpg", upload_to='images/profile_pic/')
     bio = models.TextField(null=True)
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     cover_Image = models.ImageField(upload_to='images/cover_img/', null=True, blank=True)
