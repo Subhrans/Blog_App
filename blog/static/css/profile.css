@@ -27,7 +27,6 @@
 .user_profile .row .nav-tabs
 {
     margin-left:40%;
-    margin-top:11%;
 }
 
 .user_profile .row .under_nav_section
@@ -107,4 +106,8 @@
     position: absolute;
     left: -314%;
     top: -339px;
+}
+.row{
+    margin-right:0;
+    margin-bottom:3%;
 }

@@ -1,11 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form action="{% url 'blog:add_post' %}" method="POST" enctype="multipart/form-data" novalidate>
+    <form action="{% if not postupdateform %}{% url 'blog:add_post' %}{% else %}{% url 'blog:edit_post' postid %}{% endif %}" method="POST" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
+        {% if postupdateform %}
+            {% for i in postupdateform %}
+            <label for="{{i.auto_id}}" class="control-label">{{i.label}}</label>
+            {{i}}
+        {% endfor %}
+        {% else %}
         {% for i in postform %}
             <label for="{{i.auto_id}}" class="control-label">{{i.label}}</label>
             {{i}}
         {% endfor %}
-        <input type="submit" value="Add">
+        {% endif %}
+        <input type="submit" class="btn btn-warning" value="{% if not postupdateform %}Add {% else %}Edit{% endif %}">
+        <a class="btn btn-danger" href="{% url 'blog:profile' request.user.username %}">Cancel</a>
     </form>
 {% endblock %}

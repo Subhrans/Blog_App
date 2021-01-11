@@ -3,3 +3,7 @@
     border-radius:50px;
     max-height:30px;
 }
+.content .container .row{
+    margin-left:0;
+    padding-top:3%;
+}

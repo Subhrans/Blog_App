@@ -1,0 +1,10 @@
+.navbar-brand{
+    font-size:2rem;
+    font-weight:500;
+}
+.navbar{
+    padding:1.5rem 1rem;
+}
+.navbar-light .navbar-nav .nav-link{
+    font-size:1.12rem;
+}

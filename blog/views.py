@@ -82,6 +82,28 @@ def Addpost(reqeust):
         return HttpResponseRedirect('/login/')
     return render(reqeust,'blog/add_post.html',{'postform':pf})
 
+def updatePost(request,pk):
+    if request.user.is_authenticated:
+        getpost = Post.objects.get(pk=pk, user__username=request.user.username)
+        if request.method == "POST":
+            postupdateform = PostForm(request.POST, initial={
+                "title": getpost.title,
+                "description": getpost.description,
+                "image": getpost.image,
+            },instance=getpost)
+            if postupdateform.is_valid():
+                postupdateform.save()
+                return HttpResponseRedirect('/')
+        if request.method == "GET":
+            postupdateform = PostForm(initial={
+                "title":getpost.title,
+                "description":getpost.description,
+                "image":getpost.image,
+            })
+            postid = getpost.id
+            return render(request,'blog/add_post.html',context={'postupdateform':postupdateform,'postid':postid})
+    else:
+        return HttpResponseRedirect('/login/')
 def dashboard(request,pk):
     dash = ProfileForm()
     chpic = ChangeProfilePicForm()

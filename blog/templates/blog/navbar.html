@@ -1,31 +1,39 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-    <a class="navbar-brand ml-4" href="{% url 'blog:home' %}">Blog</a>
+    <a class="navbar-brand ml-4" href="{% url 'blog:home' %}"><i class="fas fa-blog"></i>log</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="mr-auto"></div>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'blog:home' %}">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item mr-4 active">
+          <a class="nav-link" href="{% url 'blog:home' %}"><i class="fas fa-home mr-2"></i>Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+        <li class="nav-item mr-4">
+          <a class="nav-link" href="#"> <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>About</a>
         </li>
         {% if not user.is_authenticated %}
-        <li class="nav-item">
+        <li class="nav-item mr-4">
           <a class="nav-link" href="{% url 'blog:signup' %}">SignUp</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'blog:login' %}">LogIn</a>
+        <li class="nav-item mr-4">
+          <a class="nav-link" href="{% url 'blog:login' %}"><i class="fa fa-sign-in mr-2" aria-hidden="true"></i>LogIn</a>
         </li>
         {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog:profile' request.user.username %}"><i class="fa fa-user"></i>profile</a>
+          <li class="nav-item mr-4">
+            <a class="nav-link" href="{% url 'blog:profile' request.user.username %}"><i class="fa fa-user mr-2"></i>
+              {% if request.user.first_name %}
+                {{request.user.first_name|capfirst}}
+              {% else %}
+                {{request.user}}
+              {% endif %}
+            </a>
           </li>
-          <li class="nav-item">
-          <a class="nav-link" href="{% url 'blog:logout' %}">Logout</a>
+          <li class="nav-item mr-4">
+          <a class="nav-link" href="{% url 'blog:logout' %}"><i class="fa fa-sign-out mr-2" aria-hidden="true"></i>
+
+            Logout</a>
         </li>
         {% endif %}
       </ul>

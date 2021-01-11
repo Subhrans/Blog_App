@@ -2,6 +2,7 @@
 {% load static %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 {% endblock %}
 
 {% block js %}
@@ -58,11 +59,17 @@
                 </div>
                 <div class="row container">
 
-                    <div class="col-md-4 left under_nav_section">
+                    <div class="col-md-3 left under_nav_section">
                         <div class="row">
-                            <p class="h4">Intro</p>
-                            <div class="col">
-                                <p class="education">{{userprofile.bio}}</p>
+                            <p class="h4">Intro</p><br>
+                            <div>
+                                <p class="education">
+                                    {% if userprofile.bio %}
+                                    {{userprofile.bio}}
+                                    {% else %}
+                                        <small>no bio found <br> please write your bio</small>
+                                    {% endif %}
+                                </p>
                                 <p class="location">location</p>
                                 <a class="btn btn-secondary text-white"> Edit Details</a>
                                 <a class="btn btn-secondary text-white"> Add hobies</a>
@@ -105,7 +112,7 @@
                           <div class="card-body">
                             <h5 class="card-title">{{post.title}}</h5>
                             <p class="card-text">{{post.description|linebreaksbr}}</p>
-
+                            <a class="btn btn-warning" href="{% url 'blog:edit_post' post.pk %}">EditPost</a>
                           </div>
                         </div>
                         {% endfor %}
