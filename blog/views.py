@@ -93,7 +93,7 @@ def updatePost(request,pk):
             },instance=getpost)
             if postupdateform.is_valid():
                 postupdateform.save()
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/profile/'+request.user.username+'/')
         if request.method == "GET":
             postupdateform = PostForm(initial={
                 "title":getpost.title,
@@ -104,6 +104,19 @@ def updatePost(request,pk):
             return render(request,'blog/add_post.html',context={'postupdateform':postupdateform,'postid':postid})
     else:
         return HttpResponseRedirect('/login/')
+
+def deletePost(request,pk):
+    if request.user.is_authenticated:
+        post = Post.objects.get(user__username=request.user, pk=pk)
+        if request.method == "POST":
+            if post:
+                post.delete()
+                return HttpResponseRedirect('/profile/'+request.user.username+'/')
+        if request.method == "GET":
+            post_title = post.title
+    else:
+        return HttpResponseRedirect('/login/')
+    return render(request,'blog/profile.html',{"post_title":post_title})
 def dashboard(request,pk):
     dash = ProfileForm()
     chpic = ChangeProfilePicForm()

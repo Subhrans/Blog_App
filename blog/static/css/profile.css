@@ -46,7 +46,7 @@
     border:none !important;
     min-height:0;
 }
-.modal_body .row .col-md-6{
+.profile_pic_edit .modal .modal-dialog .modal-content .modal_body .row .col-md-6{
     margin-top:-20px;
 }
 .dropzone .dz-message{

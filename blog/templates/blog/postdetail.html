@@ -1,5 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-    <p>welcome to post detail page</p>
-    {{post.description}}
+
+    <div class="container">
+        <div class="row">
+            <div class="card m-auto" style="width:45rem;">
+                {% if post.image %}
+                <img src="/media/{{post.image}}" class="card-img-top" alt="Post image">
+                {% endif %}
+                <div class="card-body my-2">
+                    <h2 class="card-title">{{post.title}}</h2>
+                    <p class="card-text">{{post.description|safe}}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    Updated on {{post.creation_date}} By {{post.user}}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -16,16 +16,18 @@
                             {% endif %}
                         </a>
                         <small class="text-info ml-3">{{post.creation_date}}</small>
-                        {% if post.image %}
-                        <a href="{% url 'blog:postdetail' post.id %}">
-                            <img src="/media/{{post.image}}" class="card-img-top h-25" alt="...">
-                        </a>
-                        {% endif %}
-                      <div class="card-body">
-                        <h5 class="card-title">{{post.title}}</h5>
-                        <p class="card-text">{{post.description|linebreaksbr}}</p>
+                        <a href="{% url 'blog:postdetail' post.id %}" class="nav-link text-secondary">
+                            {% if post.image %}
 
-                      </div>
+                            <img src="/media/{{post.image}}" class="card-img-top h-25" alt="...">
+
+                            {% endif %}
+                          <div class="card-body">
+                            <h5 class="card-title">{{post.title}}</h5>
+                            <!--<p class="card-text">{% comment %}{{post.description|linebreaksbr}}{% endcomment %}</p>-->
+
+                          </div>
+                        </a>
                     </div>
 
                     {% endfor %}

@@ -13,7 +13,7 @@
         {% include 'blog/navbar.html' %}
     </header>
     <main>
-        <section class="user_profile">
+        <section class="user_profile" id="user_profile">
 
             <div>
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
@@ -96,7 +96,7 @@
                         <!-- Post view Section -->
                         {% for post in posts reversed %}
                         <div class="card mb-5" style="width: 30rem;">
-                            <a href="#" class="nav-link alert text-dark mb-0">
+                            <a href="#user_profile" class="nav-link alert text-dark mb-0">
 
                                 <img src="/media/{{post.user.userprofile.profile_Image}}" width="30px" height="30px" id="profilepic" alt="dp" class="mr-3 rounded-circle">
                                 {% if post.user.first_name %}
@@ -106,14 +106,21 @@
                                 {% endif %}
                             </a>
                             <small class="text-info">{{post.creation_date}}</small>
-                            {% if post.image %}
-                                <img src="/media/{{post.image}}" class="card-img-top h-25" alt="...">
-                            {% endif %}
-                          <div class="card-body">
-                            <h5 class="card-title">{{post.title}}</h5>
-                            <p class="card-text">{{post.description|linebreaksbr}}</p>
-                            <a class="btn btn-warning" href="{% url 'blog:edit_post' post.pk %}">EditPost</a>
-                          </div>
+                            <a href="{% url 'blog:postdetail' post.id %}" class="nav-link text-secondary">
+                                {% if post.image %}
+                                    <img src="/media/{{post.image}}" class="card-img-top h-25" alt="...">
+                                {% endif %}
+                              <div class="card-body">
+                                <h5 class="card-title">{{post.title}}</h5>
+                                <a class="btn btn-warning" href="{% url 'blog:edit_post' post.pk %}">EditPost</a>
+
+                                  <!-- Button trigger modal -->
+                                  <a class="btn btn-danger" href="{% url 'blog:edit_post' post.pk %}" data-toggle="modal" data-target="#deleteModal">DeletePost</a>
+
+
+
+                              </div>
+                            </a>
                         </div>
                         {% endfor %}
 
@@ -125,6 +132,7 @@
             <a class="btn btn-warning" href="{% url 'blog:add_post' %}">Addpost</a>
         </section>
         {% include 'blog/edit_profile.html' %}
+        {% include 'blog/delete_confirm.html' %}
     </main>
 
 {% endblock %}
