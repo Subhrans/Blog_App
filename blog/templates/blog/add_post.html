@@ -4,14 +4,14 @@
         {% csrf_token %}
         {% if postupdateform %}
             {% for i in postupdateform %}
-            <label for="{{i.auto_id}}" class="control-label">{{i.label}}</label>
-            {{i}}
-        {% endfor %}
+                <label for="{{i.auto_id}}" class="control-label">{{i.label}}</label>
+                {{i}}
+            {% endfor %}
         {% else %}
-        {% for i in postform %}
-            <label for="{{i.auto_id}}" class="control-label">{{i.label}}</label>
-            {{i}}
-        {% endfor %}
+            {% for i in postform %}
+                <label for="{{i.auto_id}}" class="control-label">{{i.label}}</label>
+                {{i}}
+            {% endfor %}
         {% endif %}
         <input type="submit" class="btn btn-warning" value="{% if not postupdateform %}Add {% else %}Edit{% endif %}">
         <a class="btn btn-danger" href="{% url 'blog:profile' request.user.username %}">Cancel</a>
