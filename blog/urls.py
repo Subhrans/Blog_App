@@ -13,6 +13,7 @@ urlpatterns = [
     path('delete_post/<pk>/',views.deletePost,name="delete_post"),
     path('postdetail/<int:pk>/',views.detailPost,name='postdetail'),
     path('categorypost/<str:pk>/lists/',views.category_post_list,name="category_posts"),
+    path('likepost/<int:pk>/',views.likeview,name="like_post"),
     path('changeprofilepic/',views.changeProfilePic,name="changepropic"),
     path('changecoverpic/',views.changeCoverPic,name="changecoverpic"),
 

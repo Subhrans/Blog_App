@@ -15,6 +15,10 @@ class Post(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=128,default="coding")
     image = models.ImageField(upload_to='images/post/', blank=True, null=True)
+    like = models.ManyToManyField(User,related_name="Post")
+
+    def totalLike(self):
+        return self.like.count()
 
     def __str__(self):
         return '{} of {}'.format(self.title, self.id)

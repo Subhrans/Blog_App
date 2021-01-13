@@ -25,9 +25,20 @@
                           <div class="card-body">
                             <h5 class="card-title">{{post.title}}</h5>
                             <!--<p class="card-text">{% comment %}{{post.description|linebreaksbr}}{% endcomment %}</p>-->
-
                           </div>
                         </a>
+                        <p class="text-muted h6 ml-4"><i class="fas fa-thumbs-up"></i> {{post.totalLike}} Likes</p>
+                        <div class="card-footer bg-white d-flex">
+                            <form action="{% url 'blog:like_post' post.id %}" method="POST">
+                                {% csrf_token %}
+                            <button type="submit" class="link-muted btn text-secondary ml-3">
+                                <i class="fas fa-thumbs-up h5"></i> <span class="h5">Like</span>
+                            </button>
+                            </form>
+                            <button type="button" class="link-muted btn text-secondary offset-4">
+                                <i class="far fa-comment-alt h5"></i> <span class="h5">Comments</span>
+                            </button>
+                        </div>
                     </div>
 
                     {% endfor %}
@@ -35,7 +46,7 @@
                     <p class="h3">Sorry no posts available</p>
                 {% endif %}
             </div>
-            <div class="col-md-2 offset-3 recent">
+            <div class="col-md-3 offset-2 text-center recent">
                 <div class="row bg-light pb-4">
                     <div class="col">
                         <p class="text-uppercase text-secondary">Follow Me</p>
@@ -57,7 +68,7 @@
                     <div class="col">
                         <p class="text-secondary text-uppercase">Category filter</p>
                         {% for post in allposts %}
-                        <a href="{% url 'blog:category_posts' post %}" class="nav-link text-secondary offset-2">{{post}}</a>
+                        <a href="{% url 'blog:category_posts' post %}" class="nav-link text-secondary">{{post}}</a>
                         {% endfor %}
                     </div>
                 </div>

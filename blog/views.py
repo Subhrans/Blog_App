@@ -139,6 +139,18 @@ def deletePost(request,pk):
     else:
         return HttpResponseRedirect('/login/')
     return render(request,'blog/profile.html',{"post_title":post_title})
+
+
+def likeview(request,pk):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            post = Post.objects.get(id=pk)
+            post.like.add(request.user)
+            return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/login/')
+
+
 def dashboard(request,pk):
     dash = ProfileForm()
     chpic = ChangeProfilePicForm()
