@@ -1,9 +1,18 @@
-<section class="mt-4 content">
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'blog/navbar.html' %}
+    <section class="mt-4 content">
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-1 posts">
                 {% if posts %}
-                    {% for post in posts reversed %}
+                    {% for post in posts %}
                     <div class="card mb-5" style="width: 40rem;">
                         <a href="{% url 'blog:profile' post.user %}" class="nav-link alert text-dark mb-0">
                             {% if post.user.userprofile.profile_Image %}
@@ -35,7 +44,7 @@
                     <p class="h3">Sorry no posts available</p>
                 {% endif %}
             </div>
-            <div class="col-md-2 recent">
+            <div class="col-md-2 offset-3 recent">
                 <div class="row bg-light">
                     <div class="col">
                         <p class="text-uppercase text-secondary">Follow Me</p>
@@ -56,7 +65,7 @@
                 <div class="row bg-light">
                     <div class="col">
                         <p>Recent posts</p>
-                        {% for post in posts %}
+                        {% for post in allposts %}
                         <a href="{% url 'blog:category_posts' post.pk %}" class="nav-link text-secondary">{{post.category}}</a>
                         {% endfor %}
                     </div>
@@ -65,3 +74,4 @@
         </div>
     </div>
 </section>
+{% endblock %}

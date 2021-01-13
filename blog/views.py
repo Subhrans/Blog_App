@@ -14,6 +14,12 @@ def index(request):
     return render(request, 'blog/home.html', context={'posts':posts})
 
 
+def category_post_list(request,pk):
+    posts = Post.objects.filter(pk=pk).order_by('creation_date')
+    allposts = Post.objects.all()
+    return render(request,'blog/category.html',{'posts':posts,'allposts':allposts})
+
+
 def detailPost(request,pk):
     post = Post.objects.get(id=pk)
     return render(request,'blog/postdetail.html',{'post':post})
@@ -63,16 +69,16 @@ def LogoutView(request):
 
 
 def Addpost(reqeust):
-
     if reqeust.user.is_authenticated:
         if reqeust.method == "POST":
             pf = PostForm(reqeust.POST,reqeust.FILES)
             if pf.is_valid():
                 title = pf.cleaned_data['title']
                 description = pf.cleaned_data['description']
+                category = pf.cleaned_data['category']
                 user = reqeust.user
                 image = pf.cleaned_data['image']
-                postdata = Post(title=title, description=description, user=user, image=image)
+                postdata = Post(title=title, description=description, user=user,category=category,image=image)
                 postdata.save()
                 return HttpResponseRedirect('/')
 
@@ -90,6 +96,7 @@ def updatePost(request,pk):
                 "title": getpost.title,
                 "description": getpost.description,
                 "image": getpost.image,
+                "category":getpost.category,
             },instance=getpost)
             if postupdateform.is_valid():
                 postupdateform.save()
@@ -99,6 +106,7 @@ def updatePost(request,pk):
                 "title":getpost.title,
                 "description":getpost.description,
                 "image":getpost.image,
+                "category":getpost.category,
             })
             postid = getpost.id
             return render(request,'blog/add_post.html',context={'postupdateform':postupdateform,'postid':postid})

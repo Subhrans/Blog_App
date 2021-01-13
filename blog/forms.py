@@ -1,8 +1,12 @@
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import UserProfile,Post
+from .models import UserProfile,Post,Category
 
+choices = Category.objects.all().values_list('name','name')
+choice_list = []
+for item in choices:
+    choice_list.append(item)
 
 class SignUp(UserCreationForm):
     username = forms.EmailField(label="Email", widget=forms.EmailInput(attrs={'class':'form-control'}))
@@ -30,11 +34,14 @@ class Login(AuthenticationForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title','description','image']
+        fields = ['title','category','description','image']
         widgets = {'title':forms.TextInput(attrs={'class':'form-control'}),
                    'description':forms.Textarea(attrs={'class':'form-control'}),
+                   'category':forms.Select(choices=choice_list,attrs={'class':'form-control',
+                                                                      'placeholder':'select category'}),
                    'image':forms.FileInput(attrs={'class':'form-control-file'}),
                    }
+
 
 class ProfileForm(forms.ModelForm):
     class Meta:
