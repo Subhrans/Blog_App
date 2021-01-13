@@ -13,11 +13,17 @@ def index(request):
     posts = Post.objects.all()
     allpost = posts
     allposts = []
-
+    liked = []
+    for i in posts:
+        if i.like.filter(id=request.user.id).exists():
+            liked.append(True)
+        else:
+            liked.append(False)
+    print("checking liked or not",liked)
     for categories in allpost:
         if categories.category not in allposts:
             allposts.append(categories.category)
-    return render(request, 'blog/home.html', context={'posts':posts,'allposts':allposts})
+    return render(request, 'blog/home.html', context={'posts':posts,'allposts':allposts,'liked':liked})
 
 
 def category_post_list(request,pk):
@@ -145,7 +151,10 @@ def likeview(request,pk):
     if request.user.is_authenticated:
         if request.method == "POST":
             post = Post.objects.get(id=pk)
-            post.like.add(request.user)
+            if post.like.filter(id=request.user.id).exists():
+                post.like.remove(request.user)
+            else:
+                post.like.add(request.user)
             return HttpResponseRedirect('/')
     else:
         return HttpResponseRedirect('/login/')

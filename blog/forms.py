@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
 from .models import UserProfile,Post,Category
+from ckeditor.fields import CKEditorWidget
 
 choices = Category.objects.all().values_list('name','name')
 choice_list = []
@@ -35,11 +36,12 @@ class PostForm(forms.ModelForm):
     category = forms.ModelChoiceField(Category.objects.order_by('name'),
                                       widget=forms.Select(attrs={'class':'form-control'}),
                                       required=True,empty_label="Select Category Options")
+    description = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Post
         fields = ['title','category','description','image']
         widgets = {'title':forms.TextInput(attrs={'class':'form-control','placeholder':"whats in your mind"}),
-                   'description':forms.Textarea(attrs={'class':'form-control'}),
+
                    'image':forms.FileInput(attrs={'class':'form-control-file'}),
                    }
 

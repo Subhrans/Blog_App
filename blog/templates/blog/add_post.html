@@ -11,6 +11,7 @@
     <form action="{% if not postupdateform %}{% url 'blog:add_post' %}{% else %}{% url 'blog:edit_post' postid %}{% endif %}" method="POST" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {% if postupdateform %}
+            {{postupdateform.media}}
             {% for i in postupdateform %}
                 <div class="mb-4">
                     <label for="{{i.auto_id}}" class="control-label text-muted">{{i.label}}</label>
@@ -18,6 +19,7 @@
                 </div>
             {% endfor %}
         {% else %}
+        {{postform.media}}
             {% for i in postform %}
                 <div class="mb-4">
                     <label for="{{i.auto_id}}" class="control-label text-muted">{{i.label}}</label>
