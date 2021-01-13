@@ -7,3 +7,10 @@
     margin-left:0;
     padding-top:3%;
 }
+.link-muted{
+    padding:0.5rem 0.1rem;
+
+}
+.link-muted:hover{
+    text-decoration:none;
+}

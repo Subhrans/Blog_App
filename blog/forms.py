@@ -32,15 +32,17 @@ class Login(AuthenticationForm):
         fields = ['username','password']
 
 class PostForm(forms.ModelForm):
+    category = forms.ModelChoiceField(Category.objects.order_by('name'),
+                                      widget=forms.Select(attrs={'class':'form-control'}),
+                                      required=True,empty_label="Select Category Options")
     class Meta:
         model = Post
         fields = ['title','category','description','image']
-        widgets = {'title':forms.TextInput(attrs={'class':'form-control'}),
+        widgets = {'title':forms.TextInput(attrs={'class':'form-control','placeholder':"whats in your mind"}),
                    'description':forms.Textarea(attrs={'class':'form-control'}),
-                   'category':forms.Select(choices=choice_list,attrs={'class':'form-control',
-                                                                      'placeholder':'select category'}),
                    'image':forms.FileInput(attrs={'class':'form-control-file'}),
                    }
+
 
 
 class ProfileForm(forms.ModelForm):

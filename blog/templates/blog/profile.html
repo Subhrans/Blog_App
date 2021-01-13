@@ -64,11 +64,11 @@
                             <p class="h4">Intro</p><br>
                             <div>
                                 <p class="education">
-                                    {% if userprofile.bio %}
-                                    {{userprofile.bio}}
-                                    {% else %}
-                                        <small>no bio found <br> please write your bio</small>
-                                    {% endif %}
+
+                                    {{userprofile.bio|default:"no bio found <br>please write your bio"|safe}}
+
+                                        <!--<small>no bio found <br> </small>-->
+
                                 </p>
                                 <p class="location">location</p>
                                 <a class="btn btn-secondary text-white"> Edit Details</a>
@@ -94,6 +94,7 @@
                         <!-- End post something form -->
 
                         <!-- Post view Section -->
+                        {% if posts %}
                         {% for post in posts reversed %}
                         <div class="card mb-5" style="width: 30rem;">
                             <a href="#user_profile" class="nav-link alert text-dark mb-0">
@@ -123,6 +124,9 @@
                             </a>
                         </div>
                         {% endfor %}
+                        {% else %}
+                        <p class="text-muted offset-3"> Create you first post</p>
+                        {% endif %}
 
                         <!--    End of Post View    -->
 

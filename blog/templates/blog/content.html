@@ -35,29 +35,29 @@
                     <p class="h3">Sorry no posts available</p>
                 {% endif %}
             </div>
-            <div class="col-md-2 recent">
-                <div class="row bg-light">
+            <div class="col-md-2 offset-3 recent">
+                <div class="row bg-light pb-4">
                     <div class="col">
                         <p class="text-uppercase text-secondary">Follow Me</p>
-                        <a href="https://www.facebook.com/subhransu.das.564/" target="-_blank">
+                        <a href="https://www.facebook.com/subhransu.das.564/" target="-_blank" class="text-muted link-muted offset-1">
                             <i class="fab fa-facebook text-secondary"></i>
                         </a>
-                        <a href="https://www.instagram.com/subhransu1299/" target="_blank">
+                        <a href="https://www.instagram.com/subhransu1299/" target="_blank" class="text-muted link-muted offset-1">
                             <i class="fab fa-instagram text-secondary"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/subhransu-das-908959147/" target="_blank">
+                        <a href="https://www.linkedin.com/in/subhransu-das-908959147/" target="_blank" class="text-muted link-muted offset-1">
                             <i class="fa fa-linkedin text-secondary" aria-hidden="true"></i>
                         </a>
-                        <a href="https://www.hackerrank.com/subhransud525" target="_blank">
+                        <a href="https://www.hackerrank.com/subhransud525" target="_blank" class="text-muted link-muted offset-1">
                             <i class="fab fa-hackerrank text-secondary"></i>
                         </a>
                     </div>
                 </div>
                 <div class="row bg-light">
                     <div class="col">
-                        <p>Recent posts</p>
-                        {% for post in posts %}
-                        <a href="{% url 'blog:category_posts' post.pk %}" class="nav-link text-secondary">{{post.category}}</a>
+                        <p class="text-secondary text-uppercase">Category filter</p>
+                        {% for post in allposts %}
+                        <a href="{% url 'blog:category_posts' post %}" class="nav-link text-secondary offset-2">{{post}}</a>
                         {% endfor %}
                     </div>
                 </div>

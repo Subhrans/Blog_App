@@ -11,12 +11,26 @@ from .models import Post,UserProfile
 @login_required(login_url='/login/')
 def index(request):
     posts = Post.objects.all()
-    return render(request, 'blog/home.html', context={'posts':posts})
+    allpost = posts
+    allposts = []
+
+    for categories in allpost:
+        if categories.category not in allposts:
+            allposts.append(categories.category)
+    return render(request, 'blog/home.html', context={'posts':posts,'allposts':allposts})
 
 
 def category_post_list(request,pk):
-    posts = Post.objects.filter(pk=pk).order_by('creation_date')
-    allposts = Post.objects.all()
+    posts = Post.objects.filter(category=pk).order_by('-creation_date')
+    allpost = Post.objects.all()
+    allposts = []
+
+    for categories in allpost:
+        # print("check", categories.category)
+        if categories.category not in allposts:
+            allposts.append(categories.category)
+    print("catogories:",allposts)
+
     return render(request,'blog/category.html',{'posts':posts,'allposts':allposts})
 
 

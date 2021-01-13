@@ -12,7 +12,7 @@ urlpatterns = [
     path('edit_post/<pk>/',views.updatePost,name="edit_post"),
     path('delete_post/<pk>/',views.deletePost,name="delete_post"),
     path('postdetail/<int:pk>/',views.detailPost,name='postdetail'),
-    path('categorypost/<pk>/lists/',views.category_post_list,name="category_posts"),
+    path('categorypost/<str:pk>/lists/',views.category_post_list,name="category_posts"),
     path('changeprofilepic/',views.changeProfilePic,name="changepropic"),
     path('changecoverpic/',views.changeCoverPic,name="changecoverpic"),
 

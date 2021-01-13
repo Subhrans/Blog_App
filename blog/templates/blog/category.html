@@ -64,9 +64,9 @@
                 </div>
                 <div class="row bg-light">
                     <div class="col">
-                        <p>Recent posts</p>
+                        <p>Recent allposts</p>
                         {% for post in allposts %}
-                        <a href="{% url 'blog:category_posts' post.pk %}" class="nav-link text-secondary">{{post.category}}</a>
+                        <a href="{% url 'blog:category_posts' post %}" class="nav-link text-secondary">{{post}}</a>
                         {% endfor %}
                     </div>
                 </div>
