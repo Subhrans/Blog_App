@@ -56,3 +56,11 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return "{}".format(self.user)
+
+
+# class Like(models.Model):
+#     like_post = models.ForeignKey(Post,on_delete=models.CASCADE)
+#     like_by = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+#
+#     def __str__(self):
+#         return str(self.pk)

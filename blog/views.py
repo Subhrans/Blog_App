@@ -14,12 +14,14 @@ def index(request):
     allpost = posts
     allposts = []
     liked = []
+     # likes = Like.objects.filter(like_by__user=request.user)
     for i in posts:
         if i.like.filter(id=request.user.id).exists():
             liked.append(True)
         else:
             liked.append(False)
     print("checking liked or not",liked)
+    # print(likes)
     for categories in allpost:
         if categories.category not in allposts:
             allposts.append(categories.category)

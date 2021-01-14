@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+{% endblock %}
 {% block content %}
-
-    <div class="container">
+    {% include 'blog/navbar.html' %}
+    <div class="container ">
         <div class="row">
             <div class="card m-auto" style="width:45rem;">
                 {% if post.image %}

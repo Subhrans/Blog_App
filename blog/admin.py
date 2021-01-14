@@ -24,3 +24,9 @@ class ChategoryAdmin(admin.ModelAdmin):
     list_display = ['id','name']
     list_per_page = 10
     search_fields = ['name','id']
+
+# @admin.register(Like)
+# class LikeAdmin(admin.ModelAdmin):
+#     list_display = ['id','like_post','like_by']
+#     list_per_page = 10
+#     search_fields = ['like_post','like_by']
