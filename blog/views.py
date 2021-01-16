@@ -5,12 +5,13 @@ from django.contrib.auth import login,logout,authenticate
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import SignUp,Login,ProfileForm,PostForm,ChangeProfilePicForm
-from .models import Post,UserProfile
+from .models import Post,UserProfile,Comment
 # Create your views here.
 
 @login_required(login_url='/login/')
 def index(request):
     posts = Post.objects.all()
+    comment = Comment.objects.all()
     allpost = posts
     allposts = []
     liked = []
@@ -25,7 +26,13 @@ def index(request):
     for categories in allpost:
         if categories.category not in allposts:
             allposts.append(categories.category)
-    return render(request, 'blog/home.html', context={'posts':posts,'allposts':allposts,'liked':liked})
+
+    context = {'posts': posts,
+               'allposts': allposts,
+               'liked': liked,
+               'comments':comment,
+               }
+    return render(request, 'blog/home.html',context)
 
 
 def category_post_list(request,pk):

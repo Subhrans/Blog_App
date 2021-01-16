@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post,UserProfile,Category,HigherSecondarySchool,SecondarySchool,College
+from .models import Post,UserProfile,Category,HigherSecondarySchool,SecondarySchool,College,Comment
 # Register your models here.
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -24,6 +24,11 @@ class ChategoryAdmin(admin.ModelAdmin):
     list_display = ['id','name']
     list_per_page = 10
     search_fields = ['name','id']
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['id','post','name']
 
 # @admin.register(Like)
 # class LikeAdmin(admin.ModelAdmin):

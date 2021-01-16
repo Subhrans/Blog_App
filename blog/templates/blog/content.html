@@ -41,9 +41,21 @@
                                         {% endif %}
                             </button>
                             </form>
-                            <button type="button" class="link-muted btn text-secondary offset-4">
+                            <button type="button" class="link-muted btn text-secondary offset-4" data-toggle="collapse" data-target="#Comments">
                                 <i class="far fa-comment-alt h5"></i> <span class="h5">Comments</span>
                             </button>
+                        </div>
+                        <div class="bg-light collapse" id="Comments">
+                            {% for comment in comments %}
+                                {% if comment.post.id == post.id %}
+                                    <strong>{{comment.name}} - {{comment.created_on}}</strong>
+                                    <p>{{comment.description}}</p>
+                                    <hr>
+
+                                {% else %}
+                                    <p>testing comment display section</p>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
 

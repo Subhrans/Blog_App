@@ -58,6 +58,18 @@ class UserProfile(models.Model):
         return "{}".format(self.user)
 
 
+class Comment(models.Model):
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name="comments")
+    name = models.CharField(max_length=128)
+    description = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "{} of {}".format(self.post.title, self.name)
+
+    def total_comment(self):
+        return Comment.objects.all().count()
+
 # class Like(models.Model):
 #     like_post = models.ForeignKey(Post,on_delete=models.CASCADE)
 #     like_by = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
