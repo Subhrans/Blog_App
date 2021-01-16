@@ -14,8 +14,8 @@ urlpatterns = [
     path('postdetail/<int:pk>/',views.detailPost,name='postdetail'),
     path('categorypost/<str:pk>/lists/',views.category_post_list,name="category_posts"),
     path('likepost/<int:pk>/',views.likeview,name="like_post"),
-    path('profilepic/',views.changeProfilePic,name="changepropic"),
-    path('coverpic/',views.changeCoverPic,name="changecoverpic"),
+    path('changeprofilepic/',views.changeProfilePic,name="changepropic"),
+    path('changecoverpic/',views.changeCoverPic,name="changecoverpic"),
 
     # path('add_post/<str:pk>/',views.Addpost,name="add_post"),
 ]
