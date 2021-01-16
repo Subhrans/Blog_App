@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import UserProfile,Post,Category
+from .models import UserProfile,Post,Category,Comment
 from ckeditor.fields import CKEditorWidget
 
 choices = Category.objects.all().values_list('name','name')
@@ -46,7 +46,12 @@ class PostForm(forms.ModelForm):
                    }
 
 
-
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields=['description']
+        widgets = {'description':forms.TextInput(attrs={'class':'form-control',
+                                                        'placeholder':'Comment your thoughts'})}
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile

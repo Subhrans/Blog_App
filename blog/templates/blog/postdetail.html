@@ -23,4 +23,11 @@
             </div>
         </div>
     </div>
+    <div class="container bg-light">
+        <form action="{% url 'blog:postdetail' post.id %}" method="POST">
+            {% csrf_token %}
+        {{commentform.as_p}}
+            <input type="submit" class="btn btn-success" value="add comment">
+        </form>
+    </div>
 {% endblock %}

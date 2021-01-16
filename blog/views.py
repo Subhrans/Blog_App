@@ -4,14 +4,14 @@ from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .forms import SignUp,Login,ProfileForm,PostForm,ChangeProfilePicForm
+from .forms import SignUp,Login,ProfileForm,PostForm,ChangeProfilePicForm,CommentForm
 from .models import Post,UserProfile,Comment
 # Create your views here.
 
-@login_required(login_url='/login/')
+
 def index(request):
     posts = Post.objects.all()
-    comment = Comment.objects.all()
+
     allpost = posts
     allposts = []
     liked = []
@@ -27,11 +27,14 @@ def index(request):
         if categories.category not in allposts:
             allposts.append(categories.category)
 
+
+    comment = Comment.objects.all().order_by('-id')[:4]
     context = {'posts': posts,
                'allposts': allposts,
                'liked': liked,
                'comments':comment,
                }
+
     return render(request, 'blog/home.html',context)
 
 
@@ -51,7 +54,21 @@ def category_post_list(request,pk):
 
 def detailPost(request,pk):
     post = Post.objects.get(id=pk)
-    return render(request,'blog/postdetail.html',{'post':post})
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            commentform = CommentForm(request.POST)
+            if commentform.is_valid():
+                comment = commentform.cleaned_data['description']
+                user= request.user.username
+                cm = Comment.objects.create(post=post,name=user,description=comment)
+                cm.save()
+                return HttpResponseRedirect('/postdetail/'+str(pk)+'/')
+        else:
+            return HttpResponseRedirect('/login/')
+    else:
+        commentform = CommentForm()
+
+    return render(request,'blog/postdetail.html',{'post':post,'commentform':commentform})
 
 
 def signup(request):
@@ -169,6 +186,7 @@ def likeview(request,pk):
         return HttpResponseRedirect('/login/')
 
 
+@login_required(login_url="/login/")
 def dashboard(request,pk):
     dash = ProfileForm()
     chpic = ChangeProfilePicForm()
@@ -179,6 +197,7 @@ def dashboard(request,pk):
     return render(request,'blog/profile.html',context)
 
 
+@login_required(login_url="/login/")
 def changeProfilePic(request):
     if request.method == 'POST':
         print(request.FILES)
@@ -196,6 +215,7 @@ def changeProfilePic(request):
     return render(request,'blog/profile.html')
 
 
+@login_required(login_url="/login/")
 def changeCoverPic(request):
     if request.method == "POST":
         cover_pic = request.FILES['file']

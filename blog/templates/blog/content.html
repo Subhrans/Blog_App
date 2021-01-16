@@ -46,16 +46,17 @@
                             </button>
                         </div>
                         <div class="bg-light collapse" id="Comments">
-                            {% for comment in comments %}
-                                {% if comment.post.id == post.id %}
-                                    <strong>{{comment.name}} - {{comment.created_on}}</strong>
-                                    <p>{{comment.description}}</p>
-                                    <hr>
-
-                                {% else %}
-                                    <p>testing comment display section</p>
-                                {% endif %}
-                            {% endfor %}
+                            {% if not comments.objects.all %}
+                                {% for comment in comments %}
+                                    {% if comment.post.id == post.id %}
+                                        <strong>{{comment.name}} - {{comment.created_on}}</strong>
+                                        <p>{{comment.description}}</p>
+                                        <hr>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <p class="btn btn-success">Please leave a comment</p>
+                            {% endif %}
                         </div>
                     </div>
 
