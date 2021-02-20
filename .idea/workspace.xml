@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="543977ec-fc30-4411-a331-a8b6005d9cbc" name="Default" comment="user can comment with login credentials">
+    <list default="true" id="543977ec-fc30-4411-a331-a8b6005d9cbc" name="Default" comment="adding favicon">
+      <change afterPath="$PROJECT_DIR$/media/images/profile_pic/DSCN3589.JPG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/blog/static/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/static/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/blog/static/css/navbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/content.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/templates/blog/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/postdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/postdetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,9 +119,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -375,7 +384,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610828311972</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="adding favicon">
+      <created>1610905922137</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1610905922137</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView">
@@ -430,6 +446,9 @@
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -442,11 +461,8 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial Commit" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="django-starter_template" />
     <MESSAGE value="authentication system" />
     <MESSAGE value="data fetch from DB" />
@@ -471,7 +487,8 @@
     <MESSAGE value="like system done" />
     <MESSAGE value="Adding Comment system" />
     <MESSAGE value="user can comment with login credentials" />
-    <option name="LAST_COMMIT_MESSAGE" value="user can comment with login credentials" />
+    <MESSAGE value="adding favicon" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding favicon" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/blog/templates/blog/home.html">

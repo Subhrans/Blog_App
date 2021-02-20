@@ -8,3 +8,14 @@
 .navbar-light .navbar-nav .nav-link{
     font-size:1.12rem;
 }
+
+.sticky-header{
+    position:sticky;
+    top:0;
+    z-index:1;
+}
+.sticky-sidebar{
+    position:fixed;
+    left:50%;
+    top:30%;
+}

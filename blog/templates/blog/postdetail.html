@@ -11,11 +11,16 @@
         <div class="row">
             <div class="card m-auto" style="width:45rem;">
                 {% if post.image %}
-                <img src="/media/{{post.image}}" class="card-img-top" alt="Post image">
+                <img src="/media/{{post.image}}" class="card-img-top img-fluid" alt="Post image">
                 {% endif %}
                 <div class="card-body my-2">
                     <h2 class="card-title">{{post.title}}</h2>
-                    <p class="card-text">{{post.description|safe}}</p>
+                    <p class="card-text lead">{{post.description|safe}}</p>
+                    <figure>
+                      <figcaption class="blockquote-footer text-right">
+                        Someone famous in <cite title="Source Title">Source Title</cite>
+                      </figcaption>
+                    </figure>
                 </div>
                 <div class="card-footer text-muted">
                     Updated on {{post.creation_date}} By {{post.user}}

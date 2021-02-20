@@ -1,10 +1,10 @@
 <section class="mt-4 content">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-1 posts">
+            <div class="col-md-6 col-sm-12 offset-md-1 posts">
                 {% if posts %}
                     {% for post in posts reversed %}
-                    <div class="card mb-5" style="width: 40rem;">
+                    <div class="card mb-5 w-100">
                         <a href="{% url 'blog:profile' post.user %}" class="nav-link alert text-dark mb-0">
                             {% if post.user.userprofile.profile_Image %}
                             <img src="/media/{{post.user.userprofile.profile_Image}}" id="profilepic" alt="dp" class="mr-3">
@@ -65,7 +65,7 @@
                     <p class="h3">Sorry no posts available</p>
                 {% endif %}
             </div>
-            <div class="col-md-3 offset-2 text-center recent">
+            <div class="col-md-3 offset-sm-2 offset-2 d-xs-none d-sm-block sticky-sidebar text-center recent">
                 <div class="row bg-light pb-4">
                     <div class="col">
                         <p class="text-uppercase text-secondary">Follow Me</p>
