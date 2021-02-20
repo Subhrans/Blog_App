@@ -2,3 +2,4 @@ django-cleanup==5.1.0
 django
 jinja2
 django_ckeditor
+pillow
